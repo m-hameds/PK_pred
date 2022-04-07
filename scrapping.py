@@ -36,12 +36,6 @@ if os.environ.get('DISPLAY','') == '':
     mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-### CREATE VIRTUAL DISPLAY ###
-!apt-get install -y xvfb # Install X Virtual Frame Buffer
-import os
-os.system('Xvfb :1 -screen 0 1600x1200x16  &')    # create virtual display with size 1600x1200 and 16 bit color. Color can be changed to 24 or 8
-os.environ['DISPLAY']=':1.0'    # tell X clients to use our virtual DISPLAY :1.0.
-
 class Chemist:
 
     def  __init__(self):
@@ -137,34 +131,8 @@ class Chemist:
         
 
 if __name__ == "__main__":
-    
-    print("""
-    1. Canonical SMILES Extraction
-    2. Scbdd Descriptors Extraction
-    3. Both Extractions
-    4. Exit
-    """)
-
-    option = int(input("Enter your option: "))
-    chemist = Chemist()
-    if option == 1:
-        chemist.CSV_Input()
-        chemist.driver_setup()
-        chemist.lanch_url()
-    
-    elif option == 2:
-        chemist.CSV_Input2()
-        chemist.driver_setup()
-        chemist.lanch_URL2()
-    
-    elif option == 3:
-        chemist.CSV_Input()
-        chemist.driver_setup()
-        chemist.lanch_url()
-        chemist.lanch_URL2()
-
-    elif option == 4:
-        exit()
-    
-    else:
-        print("Invalid option")
+    chemist = Chemist()    
+    chemist.CSV_Input()
+    chemist.driver_setup()
+    chemist.lanch_url()
+    chemist.lanch_URL2()
